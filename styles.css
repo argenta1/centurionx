@@ -1,0 +1,121 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Font and Color Scheme */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text */
+    line-height: 1.6;
+}
+
+/* Header and Navigation Styles */
+header {
+    background-color: #1c1c1c;
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #c7c7c7;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #3d3d3d;
+    color: #ffffff;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+    max-width: 800px; /* Restrict the width for better readability */
+    margin: 0 auto; /* Center the content */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Follower Slider Styles */
+input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* Username Input Field Styles */
+#link {
+    background-color: transparent; /* Transparent background */
+    color: white; /* White text color */
+    border: 1px solid #ffffff; /* White border */
+    padding: 10px;
+    border-radius: 5px;
+    width: auto; /* Auto width */
+    max-width: 400px; /* Maximum width */
+    display: block;
+    margin-left: 0; /* Align to the left */
+}
+
+
+#link::placeholder {
+    color: #c7c7c7; /* Lighter color for placeholder text */
+}
+
+#link:focus {
+    outline: none;
+    border-color: #9c27b0; /* Change border color on focus */
+}
+
+/* Purchase Button Styles */
+button {
+    background-color: #6a1b9a; /* Purple hue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #9c27b0; /* Lighter purple */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #1c1c1c;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    main {
+        width: 95%;
+        padding: 10px;
+    }
+}
