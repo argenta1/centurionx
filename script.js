@@ -9,11 +9,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const progressCircle = document.getElementById('progress-circle');
 
     function updateCost() {
-        let followers = parseInt(followerSlider.value, 10);
-        let totalCost = (followers / 1000) * pricePerThousand;
-        followerAmountDisplay.textContent = followers;
-        totalCostDisplay.textContent = totalCost.toFixed(2);
-    }
+    let followers = parseInt(followerSlider.value, 10);
+    // Ensure followers are rounded to the nearest multiple of 50
+    followers = Math.ceil(followers / 50) * 50; 
+    let totalCost = (followers / 1000) * pricePerThousand;
+    followerAmountDisplay.textContent = followers;
+    totalCostDisplay.textContent = totalCost.toFixed(2);
+}
+
+// ... rest of your script.js code ...
 
     followerSlider.addEventListener('input', updateCost);
 
