@@ -56,8 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (data.status) {
-                progressCircle.textContent = `Order Status: ${data.status}`;
-                // Additional handling for order status details can be implemented here
+                updateProgressCircle(data);
             } else {
                 throw new Error('Failed to retrieve order status');
             }
@@ -66,6 +65,22 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
             alert('An error occurred while checking the order status.');
         });
+    }
+
+    function updateProgressCircle(data) {
+        const progressPercentage = calculateProgressPercentage(data);
+        progressCircle.style.background = `conic-gradient(green ${progressPercentage}%, lightgray ${progressPercentage}% 100%)`;
+        progressCircle.textContent = `${data.status} (${progressPercentage}%)`;
+    }
+
+    function calculateProgressPercentage(data) {
+        if (data.status === 'Completed') {
+            return 100;
+        } else if (data.status === 'In progress') {
+            return (data.start_count / data.max) * 100; // Adjust this logic based on your data structure
+        } else {
+            return 0; // Default for other statuses
+        }
     }
 
     updateCost(); // Initial cost update
