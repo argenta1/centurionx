@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const orderNumberDisplay = document.getElementById('order-number');
     const progressCircle = document.getElementById('progress-circle');
 
+    const apiBaseURL = 'https://goldcenturion.com/api/v2';
+    const apiKey = 'hDBqDFR3V0VutQQpHJES8F3drjVXpjiNvtazGAAFWyu1WByhwUcIA95ww745';
+    const serviceId = 14; // Updated service ID
     const pricePerThousand = 3; // Price per thousand followers
 
     function updateCost() {
@@ -23,26 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
         let totalPrice = (quantity / 1000) * pricePerThousand;
 
         if (confirm(`Confirm order of ${quantity} followers for $${totalPrice.toFixed(2)}?`)) {
-            createOrder(link, quantity);
+            createOrder(serviceId, link, quantity);
         }
     });
 
-    function createOrder(link, quantity) {
-        const proxyUrl = '/create-order'; // Endpoint of your proxy server
-
-        fetch(`${proxyUrl}?link=${encodeURIComponent(link)}&quantity=${quantity}`, {
+    function createOrder(service, link, quantity) {
+        fetch(`${apiBaseURL}?action=add&service=${service}&link=${link}&quantity=${quantity}&key=${apiKey}`, {
             method: 'POST'
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             if (data.order) {
                 orderNumberDisplay.textContent = `Order Number: ${data.order}`;
-                progressCircle.textContent = 'Order Status: Pending...'; // Placeholder
+                checkOrderStatus(data.order);
             } else {
                 throw new Error('Order creation failed');
             }
@@ -50,6 +46,25 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => {
             console.error('Error:', error);
             alert('An error occurred while creating the order. Please check the console for details.');
+        });
+    }
+
+    function checkOrderStatus(orderId) {
+        fetch(`${apiBaseURL}?action=status&order=${orderId}&key=${apiKey}`, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                progressCircle.textContent = `Order Status: ${data.status}`;
+                // Additional handling for order status details can be implemented here
+            } else {
+                throw new Error('Failed to retrieve order status');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while checking the order status.');
         });
     }
 
