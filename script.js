@@ -33,7 +33,12 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch(`${proxyUrl}?link=${encodeURIComponent(link)}&quantity=${quantity}`, {
             method: 'POST'
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.order) {
                 orderNumberDisplay.textContent = `Order Number: ${data.order}`;
