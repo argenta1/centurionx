@@ -49,73 +49,37 @@ main {
     margin: 0 auto; /* Center the content */
 }
 
-.form-group {
-    margin-bottom: 20px;
+/* Order Status Section */
+#check-status {
+    text-align: center; /* Center align the content */
 }
 
-/* Follower Slider Styles */
-input[type="range"] {
-    width: 100%;
-    margin: 10px 0;
-}
-
-/* Username Input Field Styles */
-#link {
+#order-number-input {
     background-color: transparent; /* Transparent background */
     color: white; /* White text color */
     border: 1px solid #ffffff; /* White border */
     padding: 10px;
     border-radius: 5px;
-    width: auto; /* Auto width */
-    max-width: 400px; /* Maximum width */
-    display: block;
-    margin-left: 0; /* Align to the left */
+    width: 50%; /* Adjust width as needed */
+    max-width: 300px; /* Maximum width */
+    margin: 0 auto 20px; /* Center in the container with margin bottom */
+    display: block; /* Ensure it's a block element for margin to work */
 }
 
-#link::placeholder {
+#order-number-input::placeholder {
     color: #c7c7c7; /* Lighter color for placeholder text */
 }
 
-#link:focus {
-    outline: none;
-    border-color: #9c27b0; /* Change border color on focus */
-}
-
-/* Purchase Button Styles */
-button {
-    background-color: #6a1b9a; /* Purple hue */
+#check-status-btn {
+    background-color: #6a1b9a; /* Button color */
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #9c27b0; /* Lighter purple */
-}
-
-/* Footer Styles */
-footer {
-    background-color: #1c1c1c;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
-}
-
-/* Circular Progress Bar Styles */
-#progress-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: lightgray;
-    color: black;
-    margin: 10px auto;
+    display: block; /* Make it a block element */
+    margin: 0 auto; /* Centered */
+    width: fit-content; /* Adjust width to fit content */
 }
 
 /* Progress Bar Styles */
@@ -134,6 +98,14 @@ footer {
     transition: width 0.5s;
 }
 
+/* Footer Styles */
+footer {
+    background-color: #1c1c1c;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -146,5 +118,9 @@ footer {
     main {
         width: 95%;
         padding: 10px;
+    }
+
+    #order-number-input {
+        width: 70%; /* Wider on smaller screens */
     }
 }
